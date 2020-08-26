@@ -141,7 +141,7 @@ class DoubleLinkedList:
             p = p.next
             if p:
                 line += "=>"
-        print(line)
+        return line
 
 
 if __name__ == '__main__':
@@ -166,5 +166,3 @@ if __name__ == '__main__':
 
     link.remove(nodes[5])
     link.print()
-
-
