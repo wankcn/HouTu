@@ -58,3 +58,69 @@ Instantiate实例化，下图是提供的重载方法。
 **Find** 根据名字进行查找，遍历场景中所有的游戏物体，当场景中游戏物体很多的时候，使用Find方法很耗费性能
 **FindGameObjectsWithTag**	根据标签进行查找所有游戏物体，返回数组
 **FindWithTag** 根据标签查找返回第一个符合条件的
+
+# GameObject公有方法
+## 1.AddComponent
+往游戏物体身上添加组件，必须是游戏物体的对象来调用
+
+## 2.CompareTag
+判断两个游戏物体的标签是否一样
+
+## 3.SetActive
+禁用或激活某个游戏物体
+
+## 4.Message有关的
+**BroadcastMessage** 广播消息，传递某一方法名，不光调用自身，还会搜索所有的子物体。只要自身和子物体身上有这一传递的方法，都会被调用。可以减少游戏物体之间的耦合性。
+
+`广播消息简单的说就是调用方法，为什么不直接调用某个方法？`
+因为直接调用某个方法，需要先拿到方法所在组件的引用，拿到引用相对繁琐，还有部分情况下无法拿到引用。这时可以通过广播消息的方式传递方法名。不需要知道消息接收者具体是谁。
+```csharp
+public GameObject target;
+void Start()
+{
+    target.BroadcastMessage("Attack",null,SendMessageOptions.DontRequireReceiver);
+}
+```
+接收消息的脚本定义Attack方法
+```csharp
+// 接收消息只需要完成传递的方法名
+void Attack(){
+    Debug.Log(this.gameObject + "正在攻击");
+}
+```
+只要子物体有Attack方法都会被调用
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201001000743455.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmtjbg==,size_16,color_FFFFFF,t_70#pic_center)
+
+
+**SendMessage** 发送消息
+只在当前游戏物体身上调用，不会在子物体身上调用
+
+```csharp
+public GameObject target;
+void Start()
+{
+    target.SendMessage("Attack",null,SendMessageOptions.DontRequireReceiver);
+}
+```
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201001000612629.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmtjbg==,size_16,color_FFFFFF,t_70#pic_center)
+
+**SendMessageUpwards** 发送消息和BroadcastMessage相反，BroadcastMessage是所有子物体和自身调用，而SendMessageUpwards是发送当前游戏物体以及他所有的父亲。需要注意的是Broadcast孩子可能有多个，但是Upwards父亲可能只有一个。
+```csharp
+public GameObject target;
+void Start()
+{
+    target.SendMessageUpwards("Attack",null,SendMessageOptions.DontRequireReceiver);
+}
+```
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201001001931482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmtjbg==,size_16,color_FFFFFF,t_70#pic_center)
+
+## 5.得到组件相关方法
+**GetComponent**	如果游戏对象附加了类型为 type 的组件，则将其返回，否则返回 null。
+**GetComponentInChildren**	使用深度首次搜索返回 GameObject 或其任何子项中类型为 type 的组件。
+**GetComponentInParent**	获取 GameObject 或其任何父项中 Type type 的组件。
+**GetComponents**	返回 GameObject 中类型为 type 的所有组件。
+**GetComponentsInChildren**	 返回 GameObject 或其任何子项中类型为 type 的所有组件。
+**GetComponentsInParent** 返回 GameObject 或其任何父项中类型为 type 的所有组件。
+**TryGetComponent**	获取指定类型的组件（如果存在）。
+
+具体的内容可查看Unity手册。
