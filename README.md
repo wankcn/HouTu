@@ -29,8 +29,3 @@ C/C++基础知识学习笔记
 ## ThreadPool
 使用Python3实现的支持异步任务的线程池
 
-## TypeScript
-学习TS语言的知识点笔记
-
-## Cocos 客户端
-h5游戏开发学习笔记
