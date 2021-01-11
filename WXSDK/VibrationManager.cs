@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using MoreMountains.NiceVibrations;
 using UnityEngine;
 using WeChatWASM;
 
-public class MMVibrationManager : MonoBehaviour
+public class VibrationManager : MonoBehaviour
 {
     
     private static bool _vibrationsActive = true;
