@@ -18,3 +18,7 @@ print("\n//--------------------  pairs迭代遍历")
 for i, k in pairs(a) do
 	print("pairs遍历键值：", i.."_".. k)
 end
+
+
+
+print("\n\n\n\n\n")
