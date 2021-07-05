@@ -52,11 +52,47 @@ end
 
 Student:Speak2()
 
+print("\n//--------------------  表的公共操作")
+
+tab = {{age=1,name="123"},{age = 2,name="456"}}
+tab2 = {age =3,name = "789"}
+
+-- 插入表
+print("之前的长度"..#tab)
+table.insert(tab,tab2)
+print("之后的长度"..#tab)
+
+print(tab[1].age)
+print(tab[2].name)
+
+-- 删除指定元素  传入表 移除表最后一个索引的内容
+table.remove(tab)
+print(#tab)
+table.remove(tab,1)  -- 传入两个参数，第一个是要移除的表，第二个参数移除的内容的索引
+print(tab[1].name)  
 
 
+-- 排序 默认升序
+t={1,5,4,6,8,7,9,2}
+table.sort( t)
+for k,v in pairs(t) do
+	print(v)
+end 
 
+-- 降序 添加规则
+table.sort( t, function(a,b)
+	if a>b then
+		return true
+	end
+end )
+print("打印看一下是否排序为降序")
+for _,v in pairs(t) do
+	print(v)
+end 
 
-
-
+-- 拼接元素 返回值为一个字符串 使用较少
+t1 = {"111","222","333","444","555"}
+str = table.concat( t1, "; ",1,2)
+print(str)
 
 print("\n\n\n\n\n")
