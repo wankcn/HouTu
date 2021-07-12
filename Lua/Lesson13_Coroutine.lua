@@ -58,6 +58,7 @@ fun4 = function()
 	while true do
 		print(i)
 		i = i+1
+		-- print(coroutine.status(co3)) -- 状态是进行中
 		-- 协程挂起的函数
 		coroutine.yield(i) -- yield可以有返回值
 	end
@@ -79,6 +80,16 @@ print("返回值是："..co6())
 
 
 print("\n//--------------------  协程状态")
+-- coroutine.status()     -- 传入协程对象或方法
+-- dead 死亡/ running  运行/ suspended 暂停
+
+print(coroutine.status(co3))
+print(coroutine.status(co))   -- 创建
+
+-- 通过关键字running 需要在函数内部打印
+-- coroutine.running()  -- 可以得到当前协程的线程号
+
+
 
 
 
