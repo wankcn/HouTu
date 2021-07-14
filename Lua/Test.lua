@@ -8,5 +8,9 @@ local testLocalA = "456"
 print(testLocalA)
 
 
+
+
+aa = {1,2,3,4,5,6s
+
 -- 把本地变量返回出去
 return testLocalA

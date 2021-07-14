@@ -75,6 +75,7 @@ print(tab[1].name)
 -- 排序 默认升序
 t={1,5,4,6,8,7,9,2}
 table.sort( t)
+print("排序一下------")
 for k,v in pairs(t) do
 	print(v)
 end 
