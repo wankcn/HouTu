@@ -116,7 +116,7 @@ print(myTable4 % myTable5)
 print(myTable4 ^ myTable5)
 -- 如果用条件运算符来比较两个对象 这两个对象的元表必须一致才能准确调用方法
 print(myTable4 == myTable5)
-print(myTable4 < myTable5)
+print(myTable4 < myTable5)    -- 改成大于相当于是换了个位置然后重载
 print(myTable4 <= myTable5)
 print(myTable4 .. myTable5)
 
