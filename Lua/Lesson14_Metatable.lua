@@ -120,4 +120,22 @@ print(myTable4 < myTable5)    -- 改成大于相当于是换了个位置然后�
 print(myTable4 <= myTable5)
 print(myTable4 .. myTable5)
 
+--------------------------------------------------------------------------
+--- __index
+--- __newIndex
+
 print("\n//--------------------  特定操作__index和__newIndex")
+
+meta6 = {
+	__tostring = function()
+		return "test __index and __newIndex"
+	end
+}
+myTable6 = {}
+setmetatable(myTable6,meta6)
+print(myTable6)
+
+
+
+
+
