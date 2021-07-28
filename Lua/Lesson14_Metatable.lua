@@ -127,13 +127,25 @@ print(myTable4 .. myTable5)
 print("\n//--------------------  特定操作__index和__newIndex")
 
 meta6 = {
-	__tostring = function()
-		return "test __index and __newIndex"
-	end
+	__index = {
+		age = 1,
+		temp = 2
+	}
+
 }
 myTable6 = {}
 setmetatable(myTable6,meta6)
-print(myTable6)
+print(myTable6.age)
+print(myTable6.temp)
+
+meta7 = {}
+meta7.__newIndex={age =2}
+myTable7 = {}
+
+setmetatable(myTable7,meta7)
+
+print(myTable7.age)
+
 
 
 
