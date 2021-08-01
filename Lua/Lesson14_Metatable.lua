@@ -4,6 +4,7 @@ print("\n//--------------------  元表的概念")
 -- 任何表变量都可以用自己的元表（可以理解为一张表的爸爸）
 -- 当子表（有元表的这张表）中进行一些特定操作时，会执行元表中的内容
 
+--------------------------------------------------------------------------
 print("\n//--------------------  设置元表")
 
 fatherMeta = {}
@@ -12,6 +13,7 @@ subTable ={}
 -- 设置元表函数 第一个参数：子表 / 第二个参数：元表 
 setmetatable(subTable,fatherMeta)
 
+--------------------------------------------------------------------------
 print("\n//--------------------  特定操作")
 print("\n//--------------------  特定操作__tostring")
 
@@ -29,6 +31,7 @@ myTable = {
 }
 setmetatable(myTable,meta)
 print(myTable)  
+--------------------------------------------------------------------------
 
 print("\n//--------------------  特定操作__call")
 meta3 = {
@@ -52,6 +55,7 @@ setmetatable(myTable3,meta3)
 
 -- 只有在表里面设置了元表，并且在元表里实现了__call
 myTable3(1)     -- 子表当作函数使用，调用__call，默认第一个参数是自己
+--------------------------------------------------------------------------
 
 print("\n//--------------------  特定操作运算符重载")
 
@@ -121,32 +125,41 @@ print(myTable4 <= myTable5)
 print(myTable4 .. myTable5)
 
 --------------------------------------------------------------------------
---- __index
---- __newIndex
+--- __index 在子表中找不到某一索引的时候，会去它的元表中__index所指定的表去找
+--- __newIndex 如果赋值一个不存在的索引，会把值赋值到newIndex指向的表中，不修改自己
 
 print("\n//--------------------  特定操作__index和__newIndex")
 
-meta6 = {
-	__index = {
-		age = 1,
-		temp = 2
-	}
-
+meta6Father = {
+	name = "wenruo"
 }
+
+meta6Father.__index = meta6Father
+meta6 = {
+	age = 1,	
+	temp = 2
+}
+meta6.__index = meta6
 myTable6 = {}
 setmetatable(myTable6,meta6)
-print(myTable6.age)
-print(myTable6.temp)
-
+setmetatable(meta6,meta6Father)
+print("打印myTable6.age：",myTable6.age)
+print("打印myTable6.name：",myTable6.name)
+--------------------------------------------------------------------------
 meta7 = {}
-meta7.__newIndex={age =2}
+meta7.__newindex = meta7
 myTable7 = {}
-
 setmetatable(myTable7,meta7)
+myTable7.age = 3                                  -- 相当于把变量加到meta7里面
+print("打印myTable7.age",myTable7.age)   
+print("打印meta7.age",meta7.age)
 
-print(myTable7.age)
-
-
+--------------------------------------------------------------------------
+-- 得到元表 
+print(getmetatable(myTable7))
+local a  = rawget(myTable6,"age") print(a)        -- 先去找自己身上有没有该变量
+rawset(myTable7,"age",21)                         -- 设置自身的变量的值 
+print("用rawset设置后打印myTable7.age",myTable7.age) 
 
 
 
