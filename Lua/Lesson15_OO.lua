@@ -49,5 +49,23 @@ local per = Person:New()              -- Person中没有new方法，其实调用
 print("per.id:",per.id)               -- 从Person中取值，娶不到继续Person的元表Object中取
 
 -- /////////////////////////////////// [ 多态 ] ///////////////////////////////////
+Object:SubClass("GO")
+GO.posX = 0
+GO.posY = 1
+
+function GO:Move()
+	self.posY = self.
+end
+
+
+
+
+
+
+
+
+
+
+
 
 
