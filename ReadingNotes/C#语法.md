@@ -82,9 +82,60 @@ string str = @"https://www.baidu.com/";
 
 **显示转换**
 
-1.   括号强转
+1.   括号强转用于高精度转低精度。可能出现范围问题，浮点数注意精度问题
+
+2.    把字符串类型转换成对应类型，使用Parse，且字符串可以必须转换成对应的类型，遵守变量范围
+
+     ```c#
+     int temp = int.Parse("123");
+     Console.WriteLine(temp);
+     ```
+
+3.   Convert更准确的讲各种类型之间相互转换。Convert.To目标类型进行转换
+
+     ```c#
+     sbyte temp1 = Convert.ToSByte("1");
+     short temp2 = Convert.ToInt16("1");
+     int temp3 = Convert.ToInt32("1");
+     long temp4 = Convert.ToInt64("1");
+     
+     byte temp5 = Convert.ToByte("1");
+     ushort temp6 = Convert.ToUInt16("1");
+     uint temp7 = Convert.ToUInt32("1");
+     ulong temp8 = Convert.ToUInt64("1");
+     
+     float temp9 = Convert.ToSingle("1.1");
+     double temp10 = Convert.ToDouble("1.1");
+     decimal temp11 = Convert.ToDecimal("1.1");
+     
+     bool b = Convert.ToBoolean("true");
+     char c = Convert.ToChar("A");
+     string str = Convert.ToString(123);
+     ```
+
+     精度可以四舍五入。每个类型都存在对应的Convert方法
+
+4.   其他类型转string，使用.ToString()
 
 
+### 1.6 异常捕获
+作用：避免代码错误造成程序卡死
 
+```c#
+try
+{
+    string str = Console.ReadLine();
+    Console.WriteLine(int.Parse(str));
+}
+catch (Exception e)
+{
+    Console.WriteLine("输入非法！");
+}
+```
 
+### 1.7 运算符
 
+1.   赋值符号 = 
+2.   算术运算符 +，-，*，/，% 乘除取余再加减
+3.   符合运算符 +=，-=，*=，/=，%=
+4.   自增自减 ++，--
