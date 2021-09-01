@@ -123,3 +123,21 @@ string str = "Hello World!";
 subStr.Invoke(str,new object[]{5,7}); // 从5的位置开始截取7个
 ```
 
+**Activator**
+
+```c#
+// 用于快速实例化对象的类
+// 用于将Type对象快捷实例化为对象
+// 先得到Type，然后快速实例化一个对象
+Type test = typeof(Test);
+Test testObj = Activator.GreateInstance(test) as Test; // 默认调用无参构造
+Test testObj2 =  Activator.GreateInstance(test,99) as Test;
+```
+
+**Assembly**
+
+```c#
+// 程序集类
+//
+```
+
