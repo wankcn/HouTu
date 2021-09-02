@@ -137,7 +137,8 @@ Test testObj2 =  Activator.GreateInstance(test,99) as Test;
 **Assembly**
 
 ```c#
-// 程序集类
-//
+
 ```
+
+#### 特性
 
