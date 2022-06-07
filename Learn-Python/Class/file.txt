@@ -1,0 +1,12 @@
+@property  将类的方法当作属性来使用
+
+@__slots__:
+为指定的类设置一个静态属性列表
+为属性较少的类节约内存空间
+
+@staticmethod
+静态方法
+
+@classmethod  类方法
+
+
